@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temperature Converter</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://th.bing.com/th/id/R.5a827d7b5e76c4a74a493953e99dc53b?rik=8BdxhHognh%2feJg&riu=http%3a%2f%2ffeelmanapp.com%2fwp-content%2fuploads%2f2020%2f06%2ficon_temperatureconverter.png&ehk=ToDj1VaAIBQB2axsCc2QSFrZbhtXqhKQHI9k36%2bs5Lw%3d&risl=&pid=ImgRaw&r=0');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .converter {
+    max-width: 400px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  #result {
+    margin-top: 20px;
+    font-size: 1.2rem;
+  }
+</style>
+</head>
+<body>
+  <div class="converter">
+    <h1>Temperature Converter</h1>
+    <input type="number" id="temperature" placeholder="Enter temperature" step="0.01">
+    <select id="unit">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+      <option value="kelvin">Kelvin</option>
+    </select>
+    <button id="convertBtn">Convert</button>
+    <div id="result"></div>
+  </div>
+  <script>
+    document.getElementById('convertBtn').addEventListener('click', function() {
+      const temperature = parseFloat(document.getElementById('temperature').value);
+      const unit = document.getElementById('unit').value;
+      let result;
+
+      if (isNaN(temperature)) {
+        result = 'Please enter a valid number';
+      } else {
+        if (unit === 'celsius') {
+          result = `Converted temperature: ${temperature * 9/5 + 32} °F`;
+        } else if (unit === 'fahrenheit') {
+          result = `Converted temperature: ${(temperature - 32) * 5/9} °C`;
+        } else if (unit === 'kelvin') {
+          result = `Converted temperature: ${temperature + 273.15} K`;
+        }
+      }
+
+      document.getElementById('result').textContent = result;
+    });
+  </script>
+</body>
+</html>
